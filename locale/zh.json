@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "匿名模式",
+    "description": "在模型系统提示词中移除 DeepSeek Harness 品牌身份，改为通用 AI 助手身份；工具与功能保持不变。"
+  }
+}

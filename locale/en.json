@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Anonymous Mode",
+    "description": "Replaces the DeepSeek Harness brand identity in the model system prompt with a generic AI assistant identity; tools and features stay unchanged."
+  }
+}

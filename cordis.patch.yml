@@ -1,0 +1,26 @@
+# 匿名模式（Anon mode）bundle 补丁层。
+#
+# 三层改动：
+#   1. 覆盖 system-prompt 行：关掉固定 brand 身份，并给出通用身份前缀。
+#      （按 id 覆盖会整体替换 config，所以字段写全；web-app 层只设了 personaPrefix。）
+#   2. 停用 harness-dev-context 行：去掉指向 DSH 安装目录与 Web GUI 的提示词段。
+#      （若该行位于 group 内导致匹配失败，Host 插件的同名过滤仍会兜底清理。）
+#   3. 插入本包的 Host 插件：把各 preset 自带的身份句统一替换为匿名身份。
+#
+# 回滚：卸载本 bundle 即恢复全部原始行为（见回滚文档）。
+
+- id: system-prompt
+  name: '@deepseek-ai/dsh-system-prompt'
+  config:
+    includeHarnessIdentity: false
+    includeRuntimeContext: true
+    personaPrefix: '你是一名 AI 助手，专注于准确理解用户需求，并高质量完成任务。'
+    personaSuffix: ''
+
+- id: harness-dev-context
+  name: '@deepseek-ai/dsh-harness-dev-context'
+  disabled: true
+
+- insert:
+    - id: anon-mode
+      name: '@local/dsh-anon-mode'
